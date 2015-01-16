@@ -45,7 +45,7 @@ class UserModel
                 $password = md5($this->authPassword);
                 $requestQuery = $db->query("SELECT * FROM subscriber WHERE login = {$this->authLogin} AND password = {$password}");
                 if($requestQuery){
-                    $userSession = new Session(($id));
+                    //$userSession = new Session(($id));
                 }
                 else{
                     throw new Exception('Invalid login or password!');

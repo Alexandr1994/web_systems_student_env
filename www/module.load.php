@@ -5,6 +5,7 @@
 Class Loader
 {
     private static $_instance = null;
+    protected $loadPlug = array();
 
     private function __construct(){}
 
@@ -38,10 +39,13 @@ Class Loader
         }
         foreach ($pattern as $filename) {
             include_once $filename;
-            print_r ($filename);
-            print '<br>';
-
+            array_push($this->loadPlug,$filename);
         }
     }
 
+    public function getPlug(){
+        //var_dump($this->loadPlug);
+        return $this->loadPlug;
+
+    }
 }

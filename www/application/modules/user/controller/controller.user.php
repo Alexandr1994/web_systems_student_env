@@ -5,19 +5,7 @@ Class UserController{
     private static $localStorageInfo = array();
 
 
-    private static function testDataLogin(){
-        if(isset($_COOKIE)||isset($_SESSION)){
-            return true;
-        }
-        else return false;
-    }
-
-
     public function __construct(){
-    if(self::testDataLogin()){
-        session_start();
-        $this->current_id = $_SESSION['id'];
-        }
     }
 
     private function __clone(){
@@ -26,6 +14,10 @@ Class UserController{
 
     private function __wakeup(){
 
+    }
+
+    public function accountInfo(){
+    print 'Hello %username! Welcome to home page!';
     }
 
 
