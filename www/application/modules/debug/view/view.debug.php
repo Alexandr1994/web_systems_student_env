@@ -78,32 +78,35 @@ class ViewDebug
 
     public function ViewRequest()
     {
-        //var_dump(REQUESMETHOD);
-        if (DG_REQUESTMETHOD) {
-            print '<br><font color="red" face="Arial"> REQUEST METHOD:<b> ' . $_SERVER["REQUEST_METHOD"] . '</b></font>';
-            print '<br><font color="red" face="Arial"> REQUEST URI:<b> ' . $_SERVER["REQUEST_URI"] . '</b></font><br><br>';
-        } else {
-            print 'Вывод request method & URI отключен';
+        if (DEBUG) {
+            if (DG_REQUESTMETHOD) {
+                print '<br><font color="red" face="Arial"> REQUEST METHOD:<b> ' . $_SERVER["REQUEST_METHOD"] . '</b></font>';
+                print '<br><font color="red" face="Arial"> REQUEST URI:<b> ' . $_SERVER["REQUEST_URI"] . '</b></font><br><br>';
+            } else {
+                print 'Вывод request method & URI отключен';
+            }
         }
     }
 
     public function viewIncludeModules($loader)
     {
-        if (DG_LOADMODULES) {
-            if ($loader) {
-                print'<font  size="5px">Следующие модули <font color="green" face="Arial">загружены:</font></font><br>';
-                $includeModules = Loader::getInstance();
-                $mas = $includeModules->getPlug();
-                $i = 0;
-                while ($i != count($mas)) {
-                    print '<br><font size = "4px"> ' . $mas[$i] . '</font>';
-                    $i++;
+        if (DEBUG) {
+            if (DG_LOADMODULES) {
+                if ($loader) {
+                    print'<font  size="5px">Следующие модули <font color="green" face="Arial">загружены:</font></font><br>';
+                    $includeModules = Loader::getInstance();
+                    $mas = $includeModules->getPlug();
+                    $i = 0;
+                    while ($i != count($mas)) {
+                        print '<br><font size = "4px"> ' . $mas[$i] . '</font>';
+                        $i++;
+                    }
+                } else {
+                    print '<font color="#ff00ff" face="Arial" size="5px">Modules NO LOAD!</font><br>';
                 }
             } else {
-                print '<font color="#ff00ff" face="Arial" size="5px">Modules NO LOAD!</font><br>';
+                print 'Вывод загруженных модулей отключен';
             }
-        } else {
-            print 'Вывод загруженных модулей отключен';
         }
     }
 }

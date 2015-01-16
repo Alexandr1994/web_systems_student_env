@@ -1,5 +1,5 @@
 <?php
-
+require_once 'main_interface.php';
 abstract Class aField implements iField{
 
     private $label = null;//маркер обязательности

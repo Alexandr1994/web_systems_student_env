@@ -1,7 +1,7 @@
 <?php
 // ------ index.php-------------------------
 #Подгрузка файла с модулями
-define('DEBUG','1');
+define('DEBUG','0');
 if(DEBUG){
     print '<p><font size="5px"><b>Включен режим отладки!</b></font><hr></p>';
 }
@@ -13,7 +13,7 @@ $loader->load_all_modules();
 
 $dg = ViewDebug::getInstance();
 $dg->ViewRequest();
-$dg->viewIncludeModules($loader,null);
+$dg->viewIncludeModules($loader);
 
 var_dump(date("Y-m-d"));
 
