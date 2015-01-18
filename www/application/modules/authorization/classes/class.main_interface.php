@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Alexandr
- * Date: 16.01.2015
- * Time: 20:37
- */
+
 interface iField{
     public function label($new_value=null);//надпись у формы
     public function name($new_value=null);//имя значения формы

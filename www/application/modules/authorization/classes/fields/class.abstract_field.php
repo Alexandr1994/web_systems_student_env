@@ -1,5 +1,4 @@
 <?php
-require_once 'main_interface.php';
 abstract Class aField implements iField{
 
    //private $input_type = null;//тип поля
