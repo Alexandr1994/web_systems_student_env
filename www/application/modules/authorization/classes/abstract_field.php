@@ -2,21 +2,23 @@
 require_once 'main_interface.php';
 abstract Class aField implements iField{
 
-    private $label = null;//маркер обязательности
-    private $name = null;//значение поля
+   //private $input_type = null;//тип поля
 
+    private $label = null;//маркер обязательности
+    private $name = null;//имя поля
     private $require = false;//маркер обязательности
     private $value = null;//значение поля
+    private $errors = array();//набор выявленных ошибок данного поля
+
 
     public function label($new_value=null){//работа с надписью у поля
         if(is_null($new_value)){//вернуть значение label если, нет аргументов
             return $this->label;
         }
         else {
-            if (is_bool($new_value)) {
-                $this->label = $new_value;//переписать label если пришел аргумент
-            }
+            $this->label = $new_value;//переписать label если пришел аргумент
         }
+        return null;
     }
 
     public function name($new_value=null){//работа с именем поля
@@ -24,10 +26,9 @@ abstract Class aField implements iField{
             return $this->value;
         }
         else {
-            if (is_bool($new_value)) {
-                $this->name = $new_value;//переписать name если пришел аргумент
-            }
+            $this->name = $new_value;//переписать name если пришел аргумент
         }
+        return null;
     }
 
     public function required($new_value=null){//работа с маркером обязательности
@@ -38,9 +39,10 @@ abstract Class aField implements iField{
             if (is_bool($new_value)) {
                 $this->require = $new_value;//переписать require если пришел аргумент и огн boolean
             } else {
-                throw new Exсeption("It's not boolean variable!");
+                throw new Exception("It's not boolean variable!");
             }
         }
+        return null;
     }
 
     public function value($new_value=null){//работа со значением поля
@@ -48,33 +50,25 @@ abstract Class aField implements iField{
             return $this->value;
         }
         else {
-            if (is_bool($new_value)) {
-                $this->value = $new_value;//переписать value если пришел аргумент
-            }
+            $this->value = $new_value;//переписать value если пришел аргумент
         }
+        return null;
     }
 
-    public function validate(){
-        if (isset($_POST['login'])) { /*что писать в кавычках POST*/
-            /*Определяет, была ли установлена переменная значением отличным от NULL*/
-            $text = $_POST['login'];
-            if ($text == '') {
-                unset($text);
-            }
-        }
-        if (empty($text)) {
-            /*ошибка*/
-        }
+    public function getErrors(){//вернуть набо ошибок данного поля
+        return $this->errors;
     }
 
- //   public function Value(){
- //       $text = stripslashes($text); /*Удаляет экранирование символов*/
- //       $text = htmlspecialchars($text); /*Преобразует специальные символы в HTML сущности*/
- //       $text = trim($text); /*Удаляет пробелы из начала и конца строки*/
- //   }
 
+    public function validate(){//проверка поля на правильность
+        $this->customValidate();
+    }
 
+    public function render(){//вернуть строковое представление поля
+        $our_field = "$this->label<input_type='text' name='$this->name' value='$this->value'>";
+        return $our_field;
+    }
 
-    abstract public function CustomField();
+    abstract function customValidate();//проверка конкретного типа поелй на правильность
 
 }
