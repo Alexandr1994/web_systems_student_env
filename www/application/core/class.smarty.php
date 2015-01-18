@@ -40,11 +40,12 @@ class CreateSmarty
     public function iniSmarty()
     {
         $iniSmarty = new Smarty();
+        $this->_smarty = $iniSmarty;
         //$this->_smarty = $iniSmarty;
-        return $iniSmarty;
-    }
-
-    private function setFolderSmarty(){
-
+        $iniSmarty->template_dir = 'application/core/smarty_folder/templates/';
+        $iniSmarty->compile_dir = 'application/core/smarty_folder/templates_c/';
+        $iniSmarty->config_dir = 'application/core/smarty_folder/configs/';
+        $iniSmarty->cache_dir = 'application/core/smarty_folder/cache';
+        return $this->_smarty;
     }
 }
