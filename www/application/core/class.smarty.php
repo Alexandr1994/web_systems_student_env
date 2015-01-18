@@ -11,8 +11,10 @@ class CreateSmarty
 {
 
     private static $_instance = null;
+    private  $_smarty;
 
-    public function __contruct()
+
+    public function __construct()
     {
 
     }
@@ -38,6 +40,11 @@ class CreateSmarty
     public function iniSmarty()
     {
         $iniSmarty = new Smarty();
+        //$this->_smarty = $iniSmarty;
         return $iniSmarty;
+    }
+
+    private function setFolderSmarty(){
+
     }
 }

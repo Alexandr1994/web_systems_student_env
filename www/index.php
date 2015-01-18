@@ -17,9 +17,23 @@ $dg->viewIncludeModules($loader);
 
 var_dump(date("Y-m-d"));
 
-$smarty = CreateSmarty::getInstance();
-$smarty->iniSmarty();
-$go = $smarty->iniSmarty();
+//$smarty = CreateSmarty::getInstance();
+//$smarty->iniSmarty();
+//$go = $smarty->iniSmarty();
+$smarty = new Smarty();
+//$go->template_dir = '/application/core/smarty_folder/templates/';
+//$go->compile_dir = '/application/core/smarty_folder/templates_c/';
+//$go->config_dir = '/application/core/smarty_folder/configs/';
+//$go->cache_dir = '/application/core/smarty_folder/cache/';
+$smarty->template_dir = 'application/templates/';
+$smarty->compile_dir = 'application/templates_c/';
+$smarty->config_dir = 'application/configs/';
+$smarty->cache_dir = '/www/application/cache';
+//$go->assign('name','KAT');
+//$go->display('index.tpl');
+$smarty->debugging = true;
+$smarty->assign('name','katya');
+$smarty->display('index.tpl');
 
 $r = Router::getInstance();
 $r->process($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
