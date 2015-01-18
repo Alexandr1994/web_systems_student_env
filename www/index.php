@@ -17,6 +17,9 @@ $dg->viewIncludeModules($loader);
 
 var_dump(date("Y-m-d"));
 
+$smarty = CreateSmarty::getInstance();
+$smarty->iniSmarty();
+$go = $smarty->iniSmarty();
 
 $r = Router::getInstance();
 $r->process($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);

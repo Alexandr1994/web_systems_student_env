@@ -14,6 +14,6 @@ class UserController{
     }
 
     public function accountInfo(){
-        
+
     }
 }
