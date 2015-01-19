@@ -1,6 +1,6 @@
 <?php
 
-Class PasswordField extends aField{
+Class PasswordRegField extends aField{
 
     private $rep_value=null;//Значение поля повтора
     private $rep_name=null;//Назване поля повтора

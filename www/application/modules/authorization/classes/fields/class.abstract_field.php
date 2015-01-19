@@ -9,7 +9,6 @@ abstract Class aField implements iField{
     private $value = null;//значение поля
     private $errors = array();//набор выявленных ошибок данного поля
 
-
     public function label($new_value=null){//работа с надписью у поля
         if(is_null($new_value)){//вернуть значение label если, нет аргументов
             return $this->label;
