@@ -22,7 +22,7 @@ abstract Class aField implements iField{
 
     public function name($new_value=null){//работа с именем поля
         if(is_null($new_value)){//вернуть значение name если, нет аргументов
-            return $this->value;
+            return $this->name;
         }
         else {
             $this->name = $new_value;//переписать name если пришел аргумент
@@ -61,11 +61,6 @@ abstract Class aField implements iField{
 
     public function validate(){//проверка поля на правильность
         $this->customValidate();
-    }
-
-    public function render(){//вернуть строковое представление поля
-        $our_field = "$this->label<input_type='text' name='$this->name' value='$this->value'>";
-        return $our_field;
     }
 
     abstract function customValidate();//проверка конкретного типа поелй на правильность

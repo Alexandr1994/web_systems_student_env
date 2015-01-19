@@ -24,6 +24,21 @@ $go->assign('name','Дмитрий и Александр!');
 
 $go->display('index.tpl');
 
+testFunc();
+
+function testFunc(){
+    $label = "Пароль";
+    $name = "pass";
+    $test= new PasswordField();
+    $test->label($label);
+    $test->name($name);
+    echo $test->render();
+}
+
+
+
+
+
 $r = Router::getInstance();
 $r->process($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
 
