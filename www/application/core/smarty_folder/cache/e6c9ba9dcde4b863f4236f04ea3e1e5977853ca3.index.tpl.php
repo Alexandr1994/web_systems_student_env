@@ -10,14 +10,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     ),
   ),
   'nocache_hash' => '2019844454bbfd25b6c824-02438924',
-  'variables' => 
-  array (
-    'name' => 0,
-  ),
-  'has_nocache_code' => false,
   'version' => 'Smarty-3.1.21-dev',
-  'unifunc' => 'content_54bbfd25c445e5_08818504',
+  'unifunc' => 'content_54bd4fffcc7095_90670327',
+  'has_nocache_code' => false,
   'cache_lifetime' => 3600,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_54bbfd25c445e5_08818504')) {function content_54bbfd25c445e5_08818504($_smarty_tpl) {?>
+<?php if ($_valid && !is_callable('content_54bd4fffcc7095_90670327')) {function content_54bd4fffcc7095_90670327($_smarty_tpl) {?>
 Привет, Дмитрий и Александр!! Добро пожаловать в Smarty!<?php }} ?>

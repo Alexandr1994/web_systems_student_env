@@ -11,19 +11,24 @@ include_once 'module.load.php';
 $loader = Loader::getInstance();
 $loader->load_all_modules();
 
+/*
 $dg = ViewDebug::getInstance();
 $dg->ViewRequest();
 $dg->viewIncludeModules($loader);
+*/
 
 var_dump(date("Y-m-d"));
 
 $smarty = CreateSmarty::getInstance();
 //$smarty->iniSmarty();
-$go = $smarty->iniSmarty($index);
+
+$smFolder = 'index';
+$go = $smarty->iniSmarty($smFolder);
 $go->assign('name','Дмитрий и Александр!');
 
 $go->display('index.tpl');
 
+print '<p>';
 testFunc();
 
 function testFunc(){
@@ -34,10 +39,7 @@ function testFunc(){
     $test->name($name);
     echo $test->render();
 }
-
-
-
-
+print '</p>';
 
 $r = Router::getInstance();
 $r->process($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
