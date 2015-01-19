@@ -48,9 +48,4 @@ Class PasswordField extends aField{
         return $our_field;
     }
 
-
-
-
-
-
 }
