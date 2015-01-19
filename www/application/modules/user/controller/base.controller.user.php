@@ -1,17 +1,12 @@
 <?php
-
 /**
  * Created by PhpStorm.
  * User: Dmitriy
  * Date: 16.01.2015
  * Time: 21:51
- * Setter - устанавливает значения приватных полей класса.
- * Getter - получает значения приватных полей класса.
- * Добавить методы - взятие данных из вне, расфасовка по полям (массиву), закачка в бд.
- * Проверить/переписать текущие методы класса.
- * */
-class User
-{
+ */
+class BaseUserController{
+
     static private $_instance = null;
 
     private $id = null;
@@ -305,5 +300,4 @@ class User
             throw new Exception('Wrong E-mail');
         }
     }
-
 }

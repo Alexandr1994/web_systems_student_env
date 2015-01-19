@@ -44,6 +44,5 @@ Class Loader
     public function getPlug(){
         //var_dump($this->loadPlug);
         return $this->loadPlug;
-
     }
 }

@@ -19,7 +19,7 @@ var_dump(date("Y-m-d"));
 
 $smarty = CreateSmarty::getInstance();
 //$smarty->iniSmarty();
-$go = $smarty->iniSmarty();
+$go = $smarty->iniSmarty($index);
 $go->assign('name','Дмитрий и Александр!');
 
 $go->display('index.tpl');

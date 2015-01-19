@@ -5,7 +5,7 @@
  * Date: 16.11.2014
  * Time: 17:04
  */
-$ar1=array('UserController','accountInfo');
+$ar1=array('CabinetUserController','accountInfo');
 // 'Название класса','Вызываемый метод'
 $codes_param = array('account'=>'account','message'=>'message_box');
 

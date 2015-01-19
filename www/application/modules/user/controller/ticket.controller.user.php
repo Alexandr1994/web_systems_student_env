@@ -2,18 +2,14 @@
 /**
  * Created by PhpStorm.
  * User: Dmitriy
- * Date: 16.01.2015
- * Time: 21:51
+ * Date: 18.01.2015
+ * Time: 20:10
  */
-class UserController{
+class TicketUserController extends BaseUserController{
 
     private static $_instance = null;
 
     public function __construct(){
-
-    }
-
-    public function accountInfo(){
 
     }
 }
