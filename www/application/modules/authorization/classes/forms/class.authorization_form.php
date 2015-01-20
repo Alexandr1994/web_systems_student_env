@@ -37,9 +37,11 @@ Class AuthorizationForm extends Form{
         $this->validateForm();//проверка формы
     }
 
-    function validateCustomForm(){
+    function validateCustomForm(){//проверка формы
+        $forms_errors = array();
         foreach($this->fields as $index => $value){
-
+            $value->validate();
+            $errors = $value->getErrors();
         }
 
     }

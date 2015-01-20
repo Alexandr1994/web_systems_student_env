@@ -7,7 +7,7 @@ Class DateField extends aField{
         $label = $this->label();
         $name = $this->name();
         $value = $this->value();
-        $our_form = "$label<input type = 'date' name='$name' value='$value'>";//состовление текстового представление сторки
+        $our_form = "$label<br><input type = 'date' name='$name' value='$value'>";//состовление текстового представление сторки
         return $our_form;//вернуть представление стоки
     }
 

@@ -43,8 +43,8 @@ Class PasswordRegField extends aField{
         $value = $this->value();
         $name = $this->name();
         $label = $this->label();
-        $our_field = "$label<input type='password' name='$name' value='$value'>
-Повторите $label<input type='password' name='$this->rep_name' value='$this->rep_value'>";//сформировать текстовое представление полей
+        $our_field = "$label<br><input type='password' name='$name' value='$value'>
+Повторите $label<br><input type='password' name='$this->rep_name' value='$this->rep_value'>";//сформировать текстовое представление полей
         return $our_field;
     }
 

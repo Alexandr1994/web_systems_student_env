@@ -54,13 +54,16 @@ abstract Class aField implements iField{
         return null;
     }
 
-    public function getErrors(){//вернуть набо ошибок данного поля
+    public function getErrors(){//вернуть набор ошибок данного поля
         return $this->errors;
     }
 
 
     public function validate(){//проверка поля на правильность
-        $this->customValidate();
+        $new_error = $this->customValidate();
+        if(!is_null($new_error)){
+            array_push($this->errors,$new_error);
+        }
     }
 
     abstract function customValidate();//проверка конкретного типа поелй на правильность

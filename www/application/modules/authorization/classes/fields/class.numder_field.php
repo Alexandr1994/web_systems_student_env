@@ -20,7 +20,7 @@ Class NumberField extends aField{//текстовое поле для обраб
         $value = $this->value();
         $name = $this->name();
         $label = $this->label();
-        $our_field = "$label<input type='text' name='$name' value='$value'>";//сформировать текстовое представление поля
+        $our_field = "$label<br><input type='text' name='$name' value='$value'>";//сформировать текстовое представление поля
         return $our_field;
     }
 
