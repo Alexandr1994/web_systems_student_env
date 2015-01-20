@@ -5,7 +5,7 @@
  * Date: 18.01.2015
  * Time: 20:09
  */
-class CabinetUserController extends BaseUserController{
+class CabinetUserModel extends BaseUserModel{
 
     private static $_instance = null;
 
@@ -13,7 +13,7 @@ class CabinetUserController extends BaseUserController{
 
     }
 
-    public function accountInfo(){
+    public function validData($userData){
 
     }
 }

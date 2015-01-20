@@ -1,13 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Dmitriy
- * Date: 16.11.2014
- * Time: 17:04
- */
-$ar1=array('CabinetUserController','accountInfo');
+$ar1 = array('ProfileUserController', 'profileInfo');
+$ar2 = array('TicketUserController', 'ticketInfo');
 // 'Название класса','Вызываемый метод'
-$codes_param = array('account'=>'account','message'=>'message_box');
+$codes_param = array('account' => 'account',
+                     'ticket' => 'all_ticket',
+                     );
 
 $r = Router::getInstance();
 $r->any('/:account', $ar1, $codes_param);  //Личный кабинет пользователя
+/* Работа с тикетами */
+$r->get('/:ticket', $ar2, $codes_param);

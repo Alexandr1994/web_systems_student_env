@@ -11,9 +11,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'nocache_hash' => '2019844454bbfd25b6c824-02438924',
   'version' => 'Smarty-3.1.21-dev',
-  'unifunc' => 'content_54bd4fffcc7095_90670327',
+  'unifunc' => 'content_54bde36daaee88_65995020',
   'has_nocache_code' => false,
   'cache_lifetime' => 3600,
 ),true); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_54bd4fffcc7095_90670327')) {function content_54bd4fffcc7095_90670327($_smarty_tpl) {?>
+<?php if ($_valid && !is_callable('content_54bde36daaee88_65995020')) {function content_54bde36daaee88_65995020($_smarty_tpl) {?>
 Привет, Дмитрий и Александр!! Добро пожаловать в Smarty!<?php }} ?>

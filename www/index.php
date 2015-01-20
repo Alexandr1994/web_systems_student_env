@@ -6,7 +6,7 @@ if(DEBUG){
     print '<p><font size="5px"><b>Включен режим отладки!</b></font><hr></p>';
 }
 
-include_once 'module.load.php';
+include_once 'autoinclude.php';
 
 $loader = Loader::getInstance();
 $loader->load_all_modules();

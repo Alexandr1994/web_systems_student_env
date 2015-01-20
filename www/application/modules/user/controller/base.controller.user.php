@@ -1,29 +1,29 @@
 <?php
+
 /**
- * Created by PhpStorm.
- * User: Dmitriy
- * Date: 16.01.2015
- * Time: 21:51
+ * Class BaseUserController содержи тметоды для работой с БД.
+ * - Подготавливает данные для их дальнейшего отображения.
  */
-class BaseUserController{
+class BaseUserController
+{
 
     static private $_instance = null;
 
-    private $id = null;
-    private $name = null;
-    private $surname = null;
-    private $patronymic = null;
-    private $birthday = null;
-    private $gender = null;
-    private $PassportSeries = null;
-    private $PassportNumber = null;
-    private $PassportDepartment = null;
-    private $PassportAddress = null;
-    private $PassportGetDate = null;
-    private $phoneContact = null;
-    private $loginPhone = null;
-    private $password = null;
-    private $email = null;
+    protected $id = null;
+    protected $name = null;
+    protected $surname = null;
+    protected $patronymic = null;
+    protected $birthday = null;
+    protected $gender = null;
+    protected $PassportSeries = null;
+    protected $PassportNumber = null;
+    protected $PassportDepartment = null;
+    protected $PassportAddress = null;
+    protected $PassportGetDate = null;
+    protected $phoneContact = null;
+    protected $loginPhone = null;
+    protected $password = null;
+    protected $email = null;
 
     private $mapping = array(
         'id' => 'setId',
@@ -57,17 +57,47 @@ class BaseUserController{
 
     }
 
-    private function load($id)
-    {
+    /**
+     * Получение и установка свойств объекта через вызов
+     * магического метода вида: $object->(get|set)PropertyName($property);
+     *
+     * @param $methodName - содержит имя метода.
+     * @param $arguments - содержит свойтсво объекта.
+     *
+     * @see __call
+     * @return mixed
+     * */
 
+    public function __call($methodName, $arguments)
+    {
+        $args = preg_split('/(?<=\w)(?=[A-Z])/', $methodName);
+        $action = array_shift($args);
+        $property_name = strtolower(implode('_', $args));
+
+        switch ($action) {
+            case 'get':
+                return isset($this->$property_name) ? $this->$property_name : null;;
+            case 'set':
+                return $this->$property_name = $arguments[0];;
+        }
     }
+
+    /**
+     * Возвращет единственный экземпляр данного класса.
+     * @return object - объект класса BaseUserController.
+     */
 
     static public function getInstance()
     {
         if (is_null(self::$_instance)) {
-            self::$_instance = new self;
+            self::$_instance = new BaseUserController;
         }
         return self::$_instance;
+    }
+
+    private function load($id)
+    {
+
     }
 
     private function setData($data)
@@ -79,6 +109,10 @@ class BaseUserController{
             }
         }
     }
+
+    /*
+     * Getter's block
+     * */
 
     public function getId()
     {
@@ -150,7 +184,9 @@ class BaseUserController{
         return $this->email;
     }
 
-    /***SET***/
+    /*
+     * Setter's block
+     * */
 
     public function setId($id)
     {
