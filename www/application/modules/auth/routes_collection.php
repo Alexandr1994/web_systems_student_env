@@ -21,7 +21,7 @@
 
     $router->post('/staff_home_page',$ar1,$pattern_params_collection);
     $router->any('/:home',$ar2,$pattern_params_collection);//В ДАЛЬНЕЙШЕМ POST
-    $router->get('/login', $ar3, $ar5);
+   // $router->get('/login', $ar3, $ar5);
 
 
 

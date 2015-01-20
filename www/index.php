@@ -31,15 +31,11 @@ $go->assign('name','Дмитрий и Александр!');
 $go->display('index.tpl');
 
 print '<p>';
-testFunc();
+//testFunc();
 
 function testFunc(){
-    $label = "Пароль";
-    $name = "pass";
-    $test= new DateField();
-    $test->label($label);
-    $test->name($name);
-    echo $test->render();
+    $test= new AuthorizationForm();
+    $test->renderForm();
 }
 print '</p>';
 
