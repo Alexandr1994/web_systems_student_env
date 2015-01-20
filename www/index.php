@@ -2,6 +2,8 @@
 // ------ index.php-------------------------
 #Подгрузка файла с модулями
 define('DEBUG','0');
+define('DATE_FORMAT','Y-m-d');
+
 if(DEBUG){
     print '<p><font size="5px"><b>Включен режим отладки!</b></font><hr></p>';
 }
@@ -17,7 +19,7 @@ $dg->ViewRequest();
 $dg->viewIncludeModules($loader);
 */
 
-var_dump(date("Y-m-d"));
+var_dump(date(DATE_FORMAT));
 
 $smarty = CreateSmarty::getInstance();
 //$smarty->iniSmarty();
@@ -29,15 +31,11 @@ $go->assign('name','Дмитрий и Александр!');
 $go->display('index.tpl');
 
 print '<p>';
-testFunc();
+//testFunc();
 
 function testFunc(){
-    $label = "Пароль";
-    $name = "pass";
-    $test= new PasswordField();
-    $test->label($label);
-    $test->name($name);
-    echo $test->render();
+    $test= new AuthorizationForm();
+    $test->renderForm();
 }
 print '</p>';
 
