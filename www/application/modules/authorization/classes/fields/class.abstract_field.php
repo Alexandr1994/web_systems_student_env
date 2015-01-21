@@ -1,71 +1,61 @@
 <?php
-abstract Class aField implements iField{
-
-   //private $input_type = null;//тип поля
+abstract Class Field implements iField{
 
     private $label = null;//маркер обязательности
     private $name = null;//имя поля
     private $require = false;//маркер обязательности
     private $value = null;//значение поля
-    private $errors = array();//набор выявленных ошибок данного поля
+
+    public function __construct($new_label,$new_name, $new_req_marker,$new_value = null){
+        $this->label($new_label);//инициализация поля
+        $this->name($new_name);
+        $this->required($new_req_marker);
+        $this->value($new_value);
+    }
 
 
     public function label($new_value=null){//работа с надписью у поля
-        if(is_null($new_value)){//вернуть значение label если, нет аргументов
-            return $this->label;
-        }
-        else {
+        if(!is_null($new_value)){
             $this->label = $new_value;//переписать label если пришел аргумент
         }
-        return null;
+        return $this->label;//вернуть label
     }
 
     public function name($new_value=null){//работа с именем поля
-        if(is_null($new_value)){//вернуть значение name если, нет аргументов
-            return $this->name;
-        }
-        else {
+        if(!is_null($new_value)){
             $this->name = $new_value;//переписать name если пришел аргумент
         }
-        return null;
+        return $this->name;//вернуть name
     }
 
     public function required($new_value=null){//работа с маркером обязательности
-        if(is_null($new_value)){//вернуть значение require если, нет аргументов
-            return $this->require;
+        $new_value = (bool)$new_value;//приведение к bool
+        if(!is_null($new_value)) {
+            $this->require = $new_value;//переписать require если пришел аргумант
         }
-        else {
-            if (is_bool($new_value)) {
-                $this->require = $new_value;//переписать require если пришел аргумент и огн boolean
-            } else {
-                throw new Exception("It's not boolean variable!");
-            }
-        }
-        return null;
+        return $this->require;//вернуть require
     }
 
     public function value($new_value=null){//работа со значением поля
-        if(is_null($new_value)){//вернуть значение value если, нет аргументов
-            return $this->value;
-        }
-        else {
+        if(!is_null($new_value)){
             $this->value = $new_value;//переписать value если пришел аргумент
         }
-        return null;
+        return $this->value;//вернуть value
     }
-
-    public function getErrors(){//вернуть набор ошибок данного поля
-        return $this->errors;
-    }
-
 
     public function validate(){//проверка поля на правильность
-        $new_error = $this->customValidate();
-        if(!is_null($new_error)){
-            array_push($this->errors,$new_error);
+        $errors = array();    //массив ошибок поля
+        if($this->require){
+            if(is_null($this->value)){//если обязательное поле пустое, то впихнуть соответствубщую ошибку в массив ошибок
+                $error_collection = new Errors();
+                array_push($errors, $error_collection->emptyError());
+                return $errors;//вернуть ошибки
+            }
         }
+        return $errors += $this->customValidate();//вернуть все ошибки
     }
 
     abstract function customValidate();//проверка конкретного типа поелй на правильность
 
 }
+//МЕТОД ROW_VALUE для хранения необработанных данных из формы

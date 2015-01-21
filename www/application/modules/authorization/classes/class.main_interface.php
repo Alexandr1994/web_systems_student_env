@@ -7,5 +7,4 @@ interface iField{
     public function value($new_value=null);//значение формы
     public function render();//команда на отрисовку
     public function required($new_value=null);//маркер обязательности
-    public function getErrors();//вернуть набор ошибок
 }

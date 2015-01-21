@@ -1,16 +1,10 @@
 <?php
 
 
-Class LoginField extends aField{//текстовое поле для ФИО
+Class LoginField extends Field{//текстовое поле для ФИО
+
 
     function customValidate(){
-        $testValue = $this->value();//найти значение нужного поля
-        $error_module = new Errors();
-        if($this->required()) {//есди поле обязательно то проверить на пустоту
-            if(is_null($testValue)){
-                return $error_module->emptyError();
-            }
-        }
         return null;
     }
 

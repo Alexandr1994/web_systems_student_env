@@ -2,21 +2,19 @@
 
 abstract Class Form{
 
-   abstract public function createForm();//построение текстового представления формы
+    abstract protected function createForm();//построение текстового представления формы
 
-    abstract function validateCustomForm();//проверка текущей формы
+    abstract protected function validateCustomForm();//проверка текущей формы
 
-    abstract public function submitForm();
+    abstract protected function submitForm();
 
-    function validateForm(){//валидация формы
+    protected function validateForm(){//валидация формы
         //временная реализация
-        $this->validateCustomForm();
+        return $this->validateCustomForm();
     }
 
-    public function renderForm(){//отрисовка формы
-    //временная реализация
-        $form = $this->createForm();
-        print $form;
-    }
+    abstract public function renderForm();//отрисовка формы
+
+    abstract public function process();//обработка формы
 
 }

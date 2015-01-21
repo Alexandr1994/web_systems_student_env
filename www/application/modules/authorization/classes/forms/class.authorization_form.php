@@ -2,47 +2,55 @@
 
 Class AuthorizationForm extends Form{
 
-    //private $form_desk = null;//текстовое представление формы
-
     private $fields = array();//поля авторизации
 
-    public function createForm(){//построение формы и её текстового представления
-        //логин
-        $index_login = "login";
-        $this->fields[$index_login] = new LoginField();//инициализация класса поля
-        $this->fields[$index_login]->name($index_login);//инициализация поля логина
-        $this->fields[$index_login]->label("Ваш логин:");
-        $this->fields[$index_login]->required(true);
-        $login_desk = $this->fields[$index_login]->render();//построение текстового предсталения
-        //пароль
-        $index_password = "password";
-        $this->fields[$index_password] = new PasswordAuthField();//инициализация класса поля
-        $this->fields[$index_password]->name($index_password);//инициализация поля пароля
-        $this->fields[$index_password]->label("Пароль:");
-        $this->fields[$index_password]->required(true);
-        $password_desk = $this->fields[$index_password]->render();//построение текстового предсталения
-        $submit_form = "<input type = submit value='Авторизоваться'>";
-        //форма
-        $form_desk = "<form action='login' method='post'>$login_desk<br>$password_desk<br>$submit_form</form>";//постороение текстового представления
-        return $form_desk;
+    function __construct(){
+        $this->createForm();//построить форму
     }
 
 
-    public function submitForm(){//действие при нажатии submit
+
+    protected function createForm(){//построение формы
+        $index_login = "login";
+        $this->fields[$index_login] = new LoginField("Ваш логин",$index_login,true);//инициализация класса поля логина
+        $index_password = "password";
+        $this->fields[$index_password] = new PasswordAuthField("Пароль",$index_password, true);//инициализация класса поля пароля
+    }
+
+
+    protected function submitForm(){//действие при нажатии submit
         $data = $_POST;
-        $this->createForm();
         foreach($data as $index => $value){
             $this->fields[$index]->value($value);
         }
-        $this->validateForm();//проверка формы
     }
 
-    function validateCustomForm(){//проверка формы
+    protected function validateCustomForm(){//проверка формы
         $forms_errors = array();
         foreach($this->fields as $index => $value){
-            $value->validate();
-            $errors = $value->getErrors();
+            $value->validate();//проверка каждого поля формы
+            $errors = $value->getErrors();//вычленение ошибок форм
+            foreach($errors as $inside_value){
+                array_push($forms_errors,$inside_value);//формирование общего списка ошибок
+            }
         }
+        return $forms_errors;//вернеть все ошибки днной формы
+    }
+
+    public function renderForm(){//отображение формы
+        $all_fields = "";
+        foreach($this->fields as $currentField){
+            $current_text = $currentField->render();
+            $all_fields = "$all_fields<br>$current_text";//построение текстового предсталения
+        }
+        $submit_form = "<input type = submit value='Авторизоваться'>";
+        $form_desk = "<form action='login' method='post'>$all_fields $submit_form</form>";//постороение текстового представления
+        print $form_desk;
+    }
+
+    public function process(){
 
     }
+
 }
+//PROCESS публичный все остальное PROTECTED, PROCESS вызывает все остальные методы входе обработки action

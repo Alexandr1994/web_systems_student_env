@@ -1,15 +1,8 @@
 <?php
 
-Class PasswordAuthField extends aField{
+Class PasswordAuthField extends Field{
 
     function customValidate(){
-        $testValue = $this->value();//найти значение нужного поля
-        $error_module = new Errors();//инициализировать коллекцию ошибок
-        if($this->required()) {
-            if(is_null($testValue)){//если поле обязательно для заполнениея, проверить его на пустоту
-                return $error_module->emptyError();
-            }
-        }
         return null;
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-Class PasswordRegField extends aField{
+Class PasswordRegField extends Field{
 
     private $rep_value=null;//Значение поля повтора
     private $rep_name=null;//Назване поля повтора
@@ -28,11 +28,6 @@ Class PasswordRegField extends aField{
     function customValidate(){
         $testValue = $this->value();//найти значение нужного поля
         $error_module = new Errors();//инициализировать коллекцию ошибок
-        if($this->required()) {
-            if(is_null($testValue)){//если поле обязательно для заполнениея, проверить его на пустоту
-                return $error_module->emptyError();
-            }
-        }//дополнительная проверка
         if(!preg_match_all("/$this->rep_value/",$testValue)){//проверка на совпадение пароля и его повтора
             return $error_module->incorrectFillError();
         }
@@ -43,6 +38,8 @@ Class PasswordRegField extends aField{
         $value = $this->value();
         $name = $this->name();
         $label = $this->label();
+        // name[pass]
+        // name[confirm]
         $our_field = "$label<br><input type='password' name='$name' value='$value'>
 Повторите $label<br><input type='password' name='$this->rep_name' value='$this->rep_value'>";//сформировать текстовое представление полей
         return $our_field;

@@ -2,20 +2,25 @@
 
 Class RegistrationForm extends Form{
 
-    public function createForm(){
+    protected function createForm(){
 
 
     }
 
-    public function submitForm(){
+    protected function submitForm(){
 
     }
 
-    public function validateCustomForm(){
-
+    protected function validateCustomForm(){
 
     }
 
+    public function process(){
 
+    }
+
+    public function renderForm(){
+
+    }
 
 }
