@@ -26,17 +26,12 @@ class ProfileUserController extends BaseUserController
     {
 
     }
-
-    static public function getInstance()
-    {
-        if (is_null(self::$_instance)) {
-            self::$_instance = new CabinetUserController;
-        }
-        return self::$_instance;
-    }
-
+    
+    /*
+     * */
     public function profileInfo()
     {
+
 
     }
 }
