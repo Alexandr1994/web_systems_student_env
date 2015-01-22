@@ -35,7 +35,8 @@ print '<p>';
 //testFunc();
 
 function testFunc(){
-
+    $test = new SQLExecutor();
+    var_dump($test->executeSQL("SELECT * FROM tariff"));
 }
 print '</p>';
 
