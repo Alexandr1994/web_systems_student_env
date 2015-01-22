@@ -2,12 +2,12 @@
 
 Class NumberField extends Field{//текстовое поле для обработки номеров телефонов
 
-    function customValidate(){
-        $testValue = $this->value();//найти значение нужного поля
+    function customValidate($testValue){
         $error_module = new Errors();
-        if(preg_match_all('/([A-zА-я\'\-\|\\\/\{\}\[\]=.:;,+!@#$%^&*()<>"?])/',$testValue)){
+        if(preg_match_all('/([^\d])/',$testValue)){
             return $error_module->incorrectFillError();
         }
+        $this->value($testValue);//записать проверенное занчение
         return null;
     }
 

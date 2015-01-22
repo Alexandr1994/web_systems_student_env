@@ -31,15 +31,13 @@ $go->assign('name','Дмитрий и Александр!');
 $go->display('index.tpl');
 
 print '<p>';
-testFunc();
+
+//testFunc();
 
 function testFunc(){
-    $test= new AuthorizationForm();
-    $test->renderForm();
+
 }
 print '</p>';
-
-//secTest();
 
 $r = Router::getInstance();
 $r->process($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
@@ -47,15 +45,6 @@ $r->process($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
 
 
 
-function secTest(){
-    $arr=array("Су4ка","444","Блабла","|<оля","Аль-Арап");
-    foreach($arr as $i){
-        if(!preg_match('/(\v)/',$i)){
-            var_dump($i);
-        }
-    }
-
-}
 
 
 

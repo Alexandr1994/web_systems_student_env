@@ -2,7 +2,7 @@
 
 Class PasswordAuthField extends Field{
 
-    function customValidate(){
+    function customValidate($testValue=null){
         return null;
     }
 

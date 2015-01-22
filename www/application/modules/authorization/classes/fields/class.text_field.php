@@ -2,12 +2,12 @@
 
 Class TextField extends Field{//текстовое поле для ФИО
 
-    function customValidate(){
-        $testValue = $this->value();//найти значение нужного поля
+    function customValidate($testValue){
         $error_module = new Errors();
-        if(preg_match_all('/([\d\|\\\/\{\}\[\]=.:;,+!@#$%^&*()<>?"])/',$testValue)){
+        if(preg_match_all('/([^A-я]+)/',$testValue)){
             return $error_module->incorrectFillError();
         }
+        $this->value($testValue);//записать проверенное занчение
         return null;
     }
 

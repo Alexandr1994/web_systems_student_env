@@ -22,13 +22,17 @@ Class DateField extends Field{
         return $our_form;//вернуть представление стоки
     }
 
-    function customValidate(){
-        //добавить проверку на соответствие формату
-        $testValue = $this->value();//найти значение нужного поля
+    function customValidate($testValue){
         $error_module = new Errors();//инициализировать коллекцию ошибок
-         if($testValue>$this->max_date || $testValue<$this->min_date){//проверка на вхождение времени в указанный инетрвал
+        $testValue = new DateTime($testValue);//перезапись $testValue
+        $testValue = $testValue->format(DATE_FORMAT);//преобразование формата Даты
+        if(!$testValue){//проверка на возможность переформатирования даты
+            return $error_module->incorrectFillError();//временная реализация
+        }
+        if($testValue>$this->max_date || $testValue<$this->min_date){//проверка на вхождение времени в указанный инетрвал
             return $error_module->incorrectFillError();
         }
+        $this->value($testValue);//записать проверенное занчение
         return null;
     }
 

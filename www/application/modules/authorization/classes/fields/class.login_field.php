@@ -4,7 +4,7 @@
 Class LoginField extends Field{//текстовое поле для ФИО
 
 
-    function customValidate(){
+    function customValidate($testValue=null){
         return null;
     }
 

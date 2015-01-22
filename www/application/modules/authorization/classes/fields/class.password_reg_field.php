@@ -2,34 +2,14 @@
 
 Class PasswordRegField extends Field{
 
-    private $rep_value=null;//Значение поля повтора
-    private $rep_name=null;//Назване поля повтора
 
-    public function repeatValue($new_par=null){//работа со значением поля повтора
-        if(is_null($new_par)) {
-            return $this->rep_value;
-        }
-        else{
-            $this->rep_value = $new_par;
-        }
-        return null;
-    }
-
-    public function repeatName($new_par=null){//работа с назваением поля повтора
-        if(is_null($new_par)) {
-            return $this->$rep_name;
-        }
-        else{
-            $this->$rep_name = $new_par;
-        }
-        return null;
-    }
-
-    function customValidate(){
-        $testValue = $this->value();//найти значение нужного поля
+      function customValidate($testValue){
         $error_module = new Errors();//инициализировать коллекцию ошибок
-        if(!preg_match_all("/$this->rep_value/",$testValue)){//проверка на совпадение пароля и его повтора
-            return $error_module->incorrectFillError();
+        if($testValue) {
+            if ($testValue[0] != $testValue[1]) {//проверка на совпадение пароля и его повтора
+                return $error_module->incorrectFillError();
+            }
+            $this->value($testValue[0]);//если ошибок не произошло то записать одно из значений полей в окончательное значение
         }
         return null;
     }
@@ -38,10 +18,8 @@ Class PasswordRegField extends Field{
         $value = $this->value();
         $name = $this->name();
         $label = $this->label();
-        // name[pass]
-        // name[confirm]
-        $our_field = "$label<br><input type='password' name='$name' value='$value'>
-Повторите $label<br><input type='password' name='$this->rep_name' value='$this->rep_value'>";//сформировать текстовое представление полей
+        $our_field = "$label[0]<br><input type='password' name='$name[0]' value='$value[0]'><br>
+$label[1]<br><input type='password' name='$name[1]' value='$value[1]'>";//сформировать текстовое представление полей
         return $our_field;
     }
 

@@ -18,18 +18,17 @@ Class AuthorizationForm extends Form{
     }
 
 
-    protected function submitForm(){//действие при нажатии submit
-        $data = $_POST;
-        foreach($data as $index => $value){
-            $this->fields[$index]->value($value);
-        }
+    protected function submitForm(){//"провивка" логина и пароля по БД и redirect в случае совпадения
+
     }
 
     protected function validateCustomForm(){//проверка формы
         $forms_errors = array();
         foreach($this->fields as $index => $value){
-            $value->validate();//проверка каждого поля формы
-            $errors = $value->getErrors();//вычленение ошибок форм
+            $errors = $value->validate();//проверка каждого поля формы
+            if(count($errors) == 0){
+                continue;//если массив ошибок текущего поля пуст, то проверить следующее
+            }
             foreach($errors as $inside_value){
                 array_push($forms_errors,$inside_value);//формирование общего списка ошибок
             }
@@ -37,7 +36,8 @@ Class AuthorizationForm extends Form{
         return $forms_errors;//вернеть все ошибки днной формы
     }
 
-    public function renderForm(){//отображение формы
+    public function renderForm($errors = null){//отображение формы
+        //добавить обработку ошибок, ждем шаблонизатор
         $all_fields = "";
         foreach($this->fields as $currentField){
             $current_text = $currentField->render();
@@ -48,8 +48,22 @@ Class AuthorizationForm extends Form{
         print $form_desk;
     }
 
-    public function process(){
+    public function process(){//действие при нажатии на submit
+        print "process пошел!!";
 
+        $this->getDataFromForm();//считать данные с формы
+        $errors = $this->validateForm();//проверить данные формы и вернуть ошибки возникшие ошибки
+        if(count($errors) != 0){
+            $this->renderForm($errors);//если возникли проблемы вывести форму с сообщением об ошибках
+        }
+
+    }
+
+    private function getDataFromForm(){//считывание данных из формы
+        $data = $_POST;
+        foreach($data as $index => $value){
+            $this->fields[$index]->rowValue($value);
+        }
     }
 
 }
