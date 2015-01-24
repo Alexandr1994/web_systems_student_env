@@ -6,3 +6,4 @@ cookbooks
 www/hw2/files
 www/application/modules/authorization/classes/fields/class.password_reg_field.php
 templates_c/*
+cache/*
