@@ -1,7 +1,7 @@
 {* Smarty *}
 <html>
     <header>
-        <title></title>
+        <title>{$title}</title>
     </header>
     <body>
     <div id="wrapper">
@@ -13,7 +13,7 @@
         </div>
         <div id ="footer">
             {$footer}
-        </div>        
-    </div>        
+        </div>
+    </div>
     </body>
 </html>
