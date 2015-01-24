@@ -45,7 +45,7 @@ Class AuthorizationForm extends Form{
         }
         $submit_form = "<input type = submit value='Авторизоваться'>";
         $form_desk = "<form action='login' method='post'>$all_fields $submit_form</form>";//постороение текстового представления
-        print $form_desk;
+        return $form_desk;
     }
 
     public function process(){//действие при нажатии на submit

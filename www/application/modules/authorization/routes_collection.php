@@ -7,5 +7,4 @@
 
     $router = Router::getInstance();
 
-    $router->get("/:author",$ar1,$pattern_params_collection);//авторизация(вывод формы)
-    $router->post("/:author",$ar2,$pattern_params_collection);//авторизация(вывод формы)
+    $router->any("/:author", $ar1, $pattern_params_collection);//авторизация(вывод формы)

@@ -23,10 +23,3 @@ $go->display('index.tpl');
 
 $r = Router::getInstance();
 $r->process($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
-
-
-
-
-
-
-

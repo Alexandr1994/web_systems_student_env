@@ -5,3 +5,6 @@ Themes - 2
 	Cardinal http://cardinalcss.com/
 
 Header \ Footer \ Content = Layout
+
+Controller has method that "connected" with View
+

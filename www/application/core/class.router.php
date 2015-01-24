@@ -65,7 +65,6 @@ class Router
         if (!in_array($method, array('GET', 'POST'))) {
             throw new Exception("Request method should be GET or POST");
         }
-        var_dump($method);
 // Выполнение роутинга
 // Используем роуты $routes['GET'] или $routes['POST']  в зависимости от метода HTTP.
 
@@ -81,12 +80,13 @@ class Router
                     $posable_attribute[] = array_pop($value);
                 }
                 $e = new $callback[0]();
-                call_user_func_array(array($e, $callback[1]), $posable_attribute);
+                return call_user_func_array(array($e, $callback[1]), $posable_attribute);
 // выходим из цикла
                 break;
             }
             $matches = array();
         }
+        return "";
     }
 
     /**
