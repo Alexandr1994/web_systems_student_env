@@ -2,7 +2,7 @@
 
 class ThemeManager{
     static protected $active = null;
-    
+    /*@param $theme - object*/
     static public function setActive($theme) {
         self::$active = $theme;
     }

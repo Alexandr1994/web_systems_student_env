@@ -10,7 +10,7 @@ $loader = Loader::getInstance();
 $loader->load_all_modules();
 
 //ThemeManager::setActive(theme() == 'cardinal' ? new CardinalTheme() : new InkTheme());
-ThemeManager::setActive('cardinal');
+ThemeManager::setActive(new CardinalTheme());
 
 $r = Router::getInstance();
 $content = $r->process($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
@@ -26,4 +26,3 @@ $go->assign('content', $content);
 $go->assign('footer','I\'m FOOTER');
 
 $go->display('index.tpl');
-
