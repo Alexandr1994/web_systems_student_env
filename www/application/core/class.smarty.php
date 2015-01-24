@@ -38,15 +38,6 @@ class CreateSmarty
         return self::$_instance;
     }
 
-    /*Нужнен ли метод, инициализирующий объект данного класса?
-     * Инициализирует объект данного класса User.
-     * @return void
-
-    public static function init() {
-        self::getInstance();
-    }
-     */
-
     /**
      * Инициализирует объект класса Smarty и задает директории
      * для работы с шалонизатором.
@@ -72,7 +63,7 @@ class CreateSmarty
             $iniSmarty->config_dir = 'application/modules/' . $folder . '/smarty_folder/configs/';
             $iniSmarty->cache_dir = 'application/modules/' . $folder . '/smarty_folder/cache';
         }
-        $iniSmarty->caching = true;
+        $iniSmarty->caching = false;
         return $this->_smarty;
     }
 

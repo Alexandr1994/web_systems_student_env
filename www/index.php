@@ -11,10 +11,14 @@ $loader->load_all_modules();
 
 var_dump(date(DATE_FORMAT));
 $smarty = CreateSmarty::getInstance();
-
 $smFolder = 'index';
 $go = $smarty->iniSmarty($smFolder);
-$go->assign('name','Дмитрий и Александр!');
+$go->assign('title','Welcome');
+$go->assign('header','I\'m HEAD');
+
+$go->assign('content','I\'m CONTENT');
+$go->assign('footer','I\'m FOOTER');
+
 $go->display('index.tpl');
 
 $r = Router::getInstance();
