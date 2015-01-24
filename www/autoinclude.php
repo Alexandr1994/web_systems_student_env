@@ -7,6 +7,12 @@ Class Loader
     private static $_instance = null;
     protected $loadPlug = array();
 
+    private function __construct(){}
+
+    private function __clone(){}
+
+    private function __wakeup(){}
+
     public static function getInstance()
     {
         if (is_null(self::$_instance)) {
