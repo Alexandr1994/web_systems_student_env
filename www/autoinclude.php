@@ -28,6 +28,7 @@ Class Loader
         $this->includeFunc(glob("application/modules/*/*/*.php"));
         $this->includeFunc(glob("application/modules/*/*/*/*.php"));
         $this->includeFunc(glob("application/modules/ThemeCardinal/*.php"));
+        $this->includeFunc(glob("application/modules/ThemeInk/*.php"));
         $this->includeFunc(glob("application/modules/*/routes_collection.php"));
     }
 
