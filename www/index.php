@@ -9,17 +9,21 @@ include_once 'autoinclude.php';
 $loader = Loader::getInstance();
 $loader->load_all_modules();
 
-var_dump(date(DATE_FORMAT));
+//ThemeManager::setActive(theme() == 'cardinal' ? new CardinalTheme() : new InkTheme());
+ThemeManager::setActive('cardinal');
+
+$r = Router::getInstance();
+$content = $r->process($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
+
 $smarty = CreateSmarty::getInstance();
 $smFolder = 'index';
 $go = $smarty->iniSmarty($smFolder);
 $go->assign('title','Welcome');
 $go->assign('header','I\'m HEAD');
 
-$go->assign('content','I\'m CONTENT');
+$go->assign('content', $content);
+
 $go->assign('footer','I\'m FOOTER');
 
 $go->display('index.tpl');
 
-$r = Router::getInstance();
-$r->process($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
