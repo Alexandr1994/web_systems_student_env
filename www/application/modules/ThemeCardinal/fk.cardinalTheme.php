@@ -1,6 +1,6 @@
 <?php
 
-class CardianalTheme {
+class CardinalTheme {
     private $views = array(
         'TextField' => 'viewCardinalTextField',
     );
