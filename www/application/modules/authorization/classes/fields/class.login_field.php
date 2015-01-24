@@ -12,10 +12,11 @@ Class LoginField extends Field{//текстовое поле для ФИО
         $value = $this->value();
         $name = $this->name();
         $label = $this->label();
-        $our_field = "$label<br><input type='text' name='$name' value='$value'>";//сформировать текстовое представление поля
-        return $our_field;
+        $view = ThemeManager::GetView('TextField');
+        $filed_render = new $view($label, $name, $value);
+        $ret = $filed_render->render();
+        return $ret;
+        //$our_field = "$label<br><input type='text' name='$name' value='$value'>";//сформировать текстовое представление поля
+        //return $our_field;
     }
-
-
-
 }

@@ -17,7 +17,7 @@ Class TextField extends Field{//текстовое поле для ФИО
         $label = $this->label();
         $view = ThemeManager::GetView('TextField');
         // TextField -> viewCardinalTextField | viewInkTextField
-        $field_render = new $view($label, $name, $value);
+        $filed_render = new $view($label, $name, $value);
         $ret = $filed_render->render();
         return $ret;
     }
