@@ -3,6 +3,7 @@
 class CardinalTheme {
     private $views = array(
         'TextField' => 'viewCardinalTextField',
+        'Page'=> 'viewCardinalPage',
     );
     
     function GetView($view_name) {

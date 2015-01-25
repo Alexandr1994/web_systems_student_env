@@ -10,7 +10,8 @@ class ThemeManager{
     static public function GetView($view_name){
        return self::$active->getView($view_name);
     }    
-
+    
+    
 }
 
 

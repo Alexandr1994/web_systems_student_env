@@ -12,11 +12,9 @@ $loader->load_all_modules();
 //ThemeManager::setActive(theme() == 'cardinal' ? new CardinalTheme() : new InkTheme());
 ThemeManager::setActive(new InkTheme());
 
-
-
 $r = Router::getInstance();
 $content = $r->process($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
-
+/*GetView(name_view);*/
 $page_class = ThemeManager::GetView('Page');
 $page = new $page_class($content);
 echo $page->render();

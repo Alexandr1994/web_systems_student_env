@@ -11,7 +11,7 @@ class viewCardinalPage{
      $this->smarty->config_dir = 'application/modules/smarty_folder/configs/';
      $this->smarty->cache_dir = 'application/modules/smarty_folder/cache';
      $name_current_folder = __DIR__;
-     $this->smarty->template_dir =''.$name_current_folder.'';
+     $this->smarty->template_dir =''.$name_current_folder.'/templates';
  }
  
  /*Вернуть представление*/

@@ -10,9 +10,13 @@ class viewCardinalTextField {
         $this->name = $name;
         $this->value = $value;
     }
+    /*Переделать на шаблон вызывающий smarty*/
     
     public function render(){
-         $info = "<label>$this->label<br>
+    //$smarty = CreateSmarty::getInstance();
+    
+         $info = "
+         <label>$this->label<br>
                     <input type='text' name='$this->name' value='$this->value'>
                 </label>";
                 return $info;
