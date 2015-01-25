@@ -8,3 +8,4 @@ www/application/modules/authorization/classes/fields/class.password_reg_field.ph
 templates_c/*
 cache/*
 .c9
+.c9/*
