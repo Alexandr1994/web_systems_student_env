@@ -6,14 +6,12 @@ class viewCardinalTextField extends BaseTheme{
     protected $value = null;
     
     public function __construct($label, $name, $value) {
-        parent::__construct();
+        parent::__construct(__DIR__);
         $this->label = $label;
         $this->name = $name;
         $this->value = $value;
-    
-        $name_current_folder = __DIR__;
-        $this->smarty->template_dir =''.$name_current_folder.'/templates';
     }
+    
     /*Переделать на шаблон вызывающий smarty*/
     
     public function render(){

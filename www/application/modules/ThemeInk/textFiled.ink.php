@@ -1,29 +1,23 @@
 <?php
-class viewInkTextField{
+class viewInkTextField extends BaseTheme{
        
     protected $label = null;
     protected $name = null;
     protected $value = null;
     
-    public function __construct($label, $name, $value){
+    public function __construct($label, $name, $value) {
+        parent::__construct(__DIR__);
         $this->label = $label;
         $this->name = $name;
         $this->value = $value;
     }
     
     public function render(){
-        
-         $info = "
-         <div class='control-group'>
-            <label for='$this->name'>$this->label</label>
-                <div class='control'>
-                        <input id='name' name='$this->name' type='text' value='$this->value'>
-                </div>
-        </div>";
-    return $info;
-    
-    
-    }
+        $this->smarty->assign('label',$this->label);
+        $this->smarty->assign('name',$this->name);
+        $this->smarty->assign('value',$this->value);
+        return $this->smarty->fetch('textField.tpl');
+    }    
 }
 /*
 
