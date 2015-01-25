@@ -5,19 +5,27 @@ class viewCardinalTextField {
     protected $name = null;
     protected $value = null;
     
+    private $smarty = null;
+    
     public function __construct($label, $name, $value){
         $this->label = $label;
         $this->name = $name;
         $this->value = $value;
+        
+        $this->smarty = new Smarty();
+        $this->smarty->compile_dir = 'application/modules/smarty_folder/templates_c/';
+        $this->smarty->config_dir = 'application/modules/smarty_folder/configs/';
+        $this->smarty->cache_dir = 'application/modules/smarty_folder/cache';
+        $name_current_folder = __DIR__;
+        $this->smarty->template_dir =''.$name_current_folder.'/templates';
+        
     }
     /*Переделать на шаблон вызывающий smarty*/
     
     public function render(){
-    $data = "
-        <label>$this->label<br>
-            <input type='text' name='$this->name' value='$this->value'>
-        </label>";
-    $iniRender = new viewCardinalPage($data);
-    return $iniRender;
+        $this->smarty->assign('label',$this->label);
+        $this->smarty->assign('name',$this->name);
+        $this->smarty->assign('value',$this->value);
+        return $this->smarty->fetch('textField.tpl');
     }
 }
