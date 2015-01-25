@@ -1,15 +1,10 @@
 <?php
-class viewCardinalPage{
+class viewCardinalPage extends BaseTheme{
  
  public $content = null;
- private $smarty = null;
  
  public function __construct($content){
      $this->content = $content;
-     $this->smarty = new Smarty();
-     $this->smarty->compile_dir = 'application/modules/smarty_folder/templates_c/';
-     $this->smarty->config_dir = 'application/modules/smarty_folder/configs/';
-     $this->smarty->cache_dir = 'application/modules/smarty_folder/cache';
      $name_current_folder = __DIR__;
      $this->smarty->template_dir =''.$name_current_folder.'/templates';
  }
