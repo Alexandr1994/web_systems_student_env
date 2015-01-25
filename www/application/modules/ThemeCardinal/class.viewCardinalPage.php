@@ -4,7 +4,9 @@ class viewCardinalPage extends BaseTheme{
  public $content = null;
  
  public function __construct($content){
+     parent::__construct();
      $this->content = $content;
+     
      $name_current_folder = __DIR__;
      $this->smarty->template_dir =''.$name_current_folder.'/templates';
  }
