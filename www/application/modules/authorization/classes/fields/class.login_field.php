@@ -1,6 +1,4 @@
 <?php
-
-
 Class LoginField extends Field{//текстовое поле для ФИО
 
 

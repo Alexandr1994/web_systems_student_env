@@ -1,5 +1,5 @@
 <?php
-class viewCardinalTextField{
+class viewCardinalTextField {
        
     protected $label = null;
     protected $name = null;
