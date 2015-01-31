@@ -7,7 +7,7 @@ Class LoginField extends Field{//текстовое поле для ФИО
     }
 
     public function render(){//вернуть строковое представление текстового поля
-        $view = ThemeManager::GetView('TextField');
+        $view = TemplateManager::GetView('TextField');
         /**
          * More: $filed_render = new $view($object);
          *  */

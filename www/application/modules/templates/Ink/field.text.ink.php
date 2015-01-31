@@ -1,5 +1,5 @@
 <?php
-class viewInkTextField extends BaseTheme{
+class viewInkTextField extends BaseTemplate{
        
     protected $field = null;
     

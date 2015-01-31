@@ -1,5 +1,5 @@
 <?php
-class viewCardinalPage extends BaseTheme{
+class viewCardinalPage extends BaseTemplate{
  
  public $content = null;
  

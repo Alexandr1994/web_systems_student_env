@@ -1,5 +1,5 @@
 <?php
-class viewInkPage extends BaseTheme{
+class viewInkPage extends BaseTemplate{
  public $content = null;
  
   public function __construct($content){

@@ -1,6 +1,6 @@
 <?php 
 
-abstract class BaseTheme {
+abstract class BaseTemplate {
     
     protected $smarty = null;
 

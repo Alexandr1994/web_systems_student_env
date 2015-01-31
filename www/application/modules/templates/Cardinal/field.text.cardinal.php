@@ -1,5 +1,5 @@
 <?php
-class viewCardinalTextField extends BaseTheme{
+class viewCardinalTextField extends BaseTemplate{
 
     /*
      * @param filed - object*/
@@ -22,4 +22,4 @@ class viewCardinalTextField extends BaseTheme{
     }
 }
 
-/* Отнаследоваться от BaseThemeField, отвечает за отрисовку филда. Перенисти туда одинаковые методы. */
+/* Отнаследоваться от BaseTemplateField, отвечает за отрисовку филда. Перенисти туда одинаковые методы. */
