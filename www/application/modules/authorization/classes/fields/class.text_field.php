@@ -12,12 +12,9 @@ Class TextField extends Field{//текстовое поле для ФИО
     }
 
     public function render(){//вернуть строковое представление текстового поля
-        $value = $this->value();
-        $name = $this->name();
-        $label = $this->label();
         $view = ThemeManager::GetView('TextField');
         // TextField -> viewCardinalTextField | viewInkTextField
-        $filed_render = new $view($label, $name, $value);
+        $filed_render = new $view($this);
         $ret = $filed_render->render();
         return $ret;
     }

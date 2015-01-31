@@ -7,11 +7,11 @@ Class LoginField extends Field{//текстовое поле для ФИО
     }
 
     public function render(){//вернуть строковое представление текстового поля
-        $value = $this->value();
-        $name = $this->name();
-        $label = $this->label();
         $view = ThemeManager::GetView('TextField');
-        $filed_render = new $view($label, $name, $value);
+        /**
+         * More: $filed_render = new $view($object);
+         *  */
+        $filed_render = new $view($this);
         $ret = $filed_render->render();
         return $ret;
         //$our_field = "$label<br><input type='text' name='$name' value='$value'>";//сформировать текстовое представление поля

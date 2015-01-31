@@ -1,21 +1,18 @@
 <?php
 class viewInkTextField extends BaseTheme{
        
-    protected $label = null;
-    protected $name = null;
-    protected $value = null;
+    protected $field = null;
     
-    public function __construct($label, $name, $value) {
+    public function __construct($field) {
         parent::__construct(__DIR__);
-        $this->label = $label;
-        $this->name = $name;
-        $this->value = $value;
+        $this->field = $field;
     }
     
     public function render(){
-        $this->smarty->assign('label',$this->label);
-        $this->smarty->assign('name',$this->name);
-        $this->smarty->assign('value',$this->value);
+        $this->smarty->assign('label',$this->field->label());
+        $this->smarty->assign('name',$this->field->name());
+        $this->smarty->assign('value',$this->field->value());
+        $this->smarty->assign('required',$this->filed->required());
         return $this->smarty->fetch('textField.tpl');
     }    
 }

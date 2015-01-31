@@ -1,23 +1,25 @@
 <?php
 class viewCardinalTextField extends BaseTheme{
-       
-    protected $label = null;
-    protected $name = null;
-    protected $value = null;
-    
-    public function __construct($label, $name, $value) {
+
+    /*
+     * @param filed - object*/
+
+    protected $filed = null;
+
+    public function __construct($field) {
         parent::__construct(__DIR__);
-        $this->label = $label;
-        $this->name = $name;
-        $this->value = $value;
+        $this->filed = $field;
     }
     
     /*Переделать на шаблон вызывающий smarty*/
     
     public function render(){
-        $this->smarty->assign('label',$this->label);
-        $this->smarty->assign('name',$this->name);
-        $this->smarty->assign('value',$this->value);
+        $this->smarty->assign('label',$this->filed->label());
+        $this->smarty->assign('name',$this->filed->name());
+        $this->smarty->assign('value',$this->field->value());
+        $this->smarty->assign('required',$this->filed->required());
         return $this->smarty->fetch('textField.tpl');
     }
 }
+
+/* Отнаследоваться от BaseThemeField, отвечает за отрисовку филда. Перенисти туда одинаковые методы. */
