@@ -1,11 +1,11 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Dmitriy
- * Date: 18.01.2015
- * Time: 20:09
+ * Model: Cabinet
+ *
+ * Класс CabinetUserModel реализует логику взаимодействия с личным кабинетом.
+ *
  */
-class CabinetUserModel extends BaseUserModel{
+class ProfileUserModel extends BaseUserModel{
 
     private static $_instance = null;
 
@@ -13,6 +13,29 @@ class CabinetUserModel extends BaseUserModel{
 
     }
 
+    public function changeName(){
+
+    }
+
+    public function changeSurname(){
+
+    }
+
+    public function changePatronymic(){
+
+    }
+
+    public function changeEmail(){
+
+    }
+
+    public function changeMobilePhone(){
+
+    }
+
+    /**
+     * Проверяет данные на валидность.
+     * @param userData - данные пользователя. Могут быть собраны ввиде массива*/
     public function validData($userData){
 
     }

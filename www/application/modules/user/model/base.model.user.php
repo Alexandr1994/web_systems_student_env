@@ -35,17 +35,6 @@ class BaseUserModel
     {
 
     }
-
-    private function __clone()
-    {
-
-    }
-
-    private function __wakeup()
-    {
-
-    }
-
     /**
      * Получение и установка свойств объекта через вызов
      * магического метода вида: $object->(get|set)PropertyName($property);
@@ -268,5 +257,11 @@ class BaseUserModel
         } else {
             throw new Exception('Wrong E-mail');
         }
+    }
+
+    /*
+     * */
+    public function saveChanges(){
+
     }
 }
