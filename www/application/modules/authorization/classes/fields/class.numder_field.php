@@ -12,11 +12,9 @@ Class NumberField extends Field{//текстовое поле для обраб�
     }
 
     public function render(){//вернуть строковое представление текстового поля
-        $value = $this->value();
-        $name = $this->name();
-        $label = $this->label();
-        $our_field = "$label<br><input type='text' name='$name' value='$value'>";//сформировать текстовое представление поля
-        return $our_field;
+        $view = TemplateManager::GetView('TextField');
+        $filed_render = new $view($this);
+        return $filed_render->render();
     }
 
 }

@@ -5,19 +5,23 @@ Class PassportField extends Field{//текстовое поле для номе�
 
     function customValidate($testValue){
         $error_module = new Errors();
-        if(preg_match_all('/([^\d])/',$testValue)){
+        if(preg_match_all('/([^\d])/',$testValue)){//проверка на содержание посторонних символов
             return $error_module->incorrectFillError();
-        }//добавить проверку на количество символов
+        }
+        if(!$this->passportInfoTest($testValue)){//проверка на количество символов
+            return $error_module->incorrectFillError();
+        }
         $this->value($testValue);//записать проверенное занчение
         return null;
     }
 
+    abstract protected function passportInfoTest($testValue);//проверка папортной информации на количество символов
+
     public function render(){//вернуть строковое представление текстового поля
-        $value = $this->value();
-        $name = $this->name();
-        $label = $this->label();
-        $our_field = "$label<br><input type='text' name='$name' value='$value'>";//сформировать текстовое представление поля
-        return $our_field;
+        $view = TemplateManager::GetView('TextField');
+        $filed_render = new $view($this);
+        return $filed_render->render();
+
     }
 
 }
