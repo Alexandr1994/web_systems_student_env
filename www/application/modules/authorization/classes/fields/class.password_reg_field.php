@@ -15,12 +15,9 @@ Class PasswordRegField extends Field{
     }
 
     public function render(){//вернуть строковое представление текстового поля
-        $value = $this->value();
-        $name = $this->name();
-        $label = $this->label();
-        $our_field = "$label[0]<br><input type='password' name='$name[0]' value='$value[0]'><br>
-$label[1]<br><input type='password' name='$name[1]' value='$value[1]'>";//сформировать текстовое представление полей
-        return $our_field;
+        $view = TemplateManager::GetView('TextField');//добавить шаблон поля пароля регистрации
+        $filed_render = new $view($this);
+        return $filed_render->render();
     }
 
 }

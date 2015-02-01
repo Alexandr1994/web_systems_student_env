@@ -25,27 +25,17 @@ Class AuthorizationForm extends Form{
     protected function validateCustomForm(){//проверка формы
         $forms_errors = array();
         foreach($this->fields as $index => $value){
-            $errors = $value->validate();//проверка каждого поля формы
-            if(count($errors) == 0){
-                continue;//если массив ошибок текущего поля пуст, то проверить следующее
-            }
-            foreach($errors as $inside_value){
-                array_push($forms_errors,$inside_value);//формирование общего списка ошибок
-            }
+            $value->validate();//проверка каждого поля формы
+            $errors = $value->getErrors();
+            array_merge($forms_errors,$errors);//добавление в массив ошибок формы ошибки данного поля
         }
         return $forms_errors;//вернеть все ошибки днной формы
     }
 
     public function renderForm($errors = null){//отображение формы
         //добавить обработку ошибок, ждем шаблонизатор
-        $all_fields = "";
-        foreach($this->fields as $currentField){
-            $current_text = $currentField->render();
-            $all_fields = "$all_fields<br>$current_text";//построение текстового предсталения
-        }
-        $submit_form = "<input type = submit value='Авторизоваться'>";
-        $form_desk = "<form action='login' method='post'>$all_fields $submit_form</form>";//постороение текстового представления
-        return $form_desk;
+        //цикл рендера каждого из полей формы на уровне шаблонизатора
+        //добавить новую форму submit
     }
 
     public function process(){//действие при нажатии на submit

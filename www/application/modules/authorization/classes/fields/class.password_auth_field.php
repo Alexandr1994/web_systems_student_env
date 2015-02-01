@@ -7,11 +7,9 @@ Class PasswordAuthField extends Field{
     }
 
     public function render(){//вернуть строковое представление текстового поля
-        $value = $this->value();
-        $name = $this->name();
-        $label = $this->label();
-        $our_field = "$label<br><input type='password' name='$name' value='$value'>";//сформировать текстовое представление полей
-        return $our_field;
+        $view = TemplateManager::GetView('TextField');//добавить шаблон поля пароля авторизации
+        $filed_render = new $view($this);
+        return $filed_render->render();
     }
 
 }
