@@ -4,7 +4,6 @@ abstract Class Field implements iField{
     private $label = null;//маркер обязательности
     private $name = null;//имя поля
     private $require = false;//маркер обязательности
-    private $value = null;//значение поля
     private $raw_value = null;//необработанные данные формы
     private $errors = array();//ошибки данного поля
 
@@ -37,15 +36,12 @@ abstract Class Field implements iField{
         return $this->require;//вернуть require
     }
 
-    public function unify($value){//преобразование значения rawValue в требуемый формат
-        $this->value = trim($value);
+    protected function unify(){//преобразование значения rawValue в требуемый формат
+        return trim($this->raw_value);
     }
 
-    public function value($new_value=null){//работа со значением поля
-        if(!is_null($new_value)){
-            $this->value = $new_value;//переписать value если пришел аргумент
-        }
-        return $this->value;//вернуть value
+    public function value(){//работа со значением поля
+        return $this->unify();//вернуть value
     }
 
     public function rawValue($new_value=null){//работа с необработанным значением поля
@@ -63,7 +59,6 @@ abstract Class Field implements iField{
                 return;
             }
         }
-        $this->unify($this->rawValue());//привести занчение к нужному формату
         $this->errors = $this->customValidate();//вернуть все ошибки
     }
 

@@ -14,9 +14,9 @@ Class DateField extends Field{
         $this->max_date = $new_max_date;
     }
 
-    public function unify($value){//перегрузка преобразования даты
-        $value = new DateTime($value);
-        $this->value($value->format(DATE_FORMAT));//преобразование даты
+    public function unify(){//перегрузка преобразования даты
+        $value = new DateTime($this->rawValue());
+        return $value->format(DATE_FORMAT);//преобразование даты
     }
 
     public function render(){//вернуть текстовое представление формы

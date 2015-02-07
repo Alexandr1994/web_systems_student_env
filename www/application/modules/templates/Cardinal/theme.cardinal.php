@@ -3,6 +3,9 @@
 class CardinalTheme {
     private $views = array(
         'TextField' => 'viewCardinalTextField',
+        'ButtonField' => 'viewCardinalButton',
+        'PasswordRegField' => 'viewCardinalPasswordRegField',
+        'PasswordAuthorField' => 'viewCardinalPasswordAuthorField',
         'Page'=> 'viewCardinalPage',
     );
     

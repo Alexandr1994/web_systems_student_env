@@ -16,8 +16,7 @@ Class TextField extends Field{//текстовое поле для ФИО
         $view = TemplateManager::GetView('TextField');
         // TextField -> viewCardinalTextField | viewInkTextField
         $filed_render = new $view($this);
-        $ret = $filed_render->render();
-        return $ret;
+        return $filed_render->render();
     }
 }
 
