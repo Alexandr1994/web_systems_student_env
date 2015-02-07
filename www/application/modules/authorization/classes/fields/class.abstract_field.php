@@ -56,7 +56,6 @@ abstract Class Field implements iField{
     }
 
     public function validate(){//проверка поля на правильность(формирование массива ошибок)
-        $testValue = $this->rawValue();//вернуть проверяемые значения
         if($this->require){
             if(is_null($this->rawValue())){//если обязательное поле пустое, то впихнуть соответствубщую ошибку в массив ошибок
                 $error_collection = new Errors();
@@ -64,14 +63,15 @@ abstract Class Field implements iField{
                 return;
             }
         }
-        $this->errors = $this->customValidate($testValue);//вернуть все ошибки
+        $this->unify($this->rawValue());//привести занчение к нужному формату
+        $this->errors = $this->customValidate();//вернуть все ошибки
     }
 
     public function getErrors(){//вернуть все ошибки данного поля
         return $this->errors;
     }
 
-    abstract function customValidate($testValue);//проверка конкретного типа поелй на правильность
+    abstract function customValidate();//проверка конкретного типа поелй на правильность
 
 }
 //МЕТОД RAW_VALUE для хранения необработанных данных из формы

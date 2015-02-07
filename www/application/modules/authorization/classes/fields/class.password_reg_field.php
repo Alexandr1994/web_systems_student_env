@@ -2,8 +2,8 @@
 
 Class PasswordRegField extends Field{
 
-
-      function customValidate($testValue){
+      function customValidate(){
+        $testValue = $this->value();//вернуть тестовое значение
         $error_module = new Errors();//инициализировать коллекцию ошибок
         if($testValue) {
             if ($testValue[0] != $testValue[1]) {//проверка на совпадение пароля и его повтора

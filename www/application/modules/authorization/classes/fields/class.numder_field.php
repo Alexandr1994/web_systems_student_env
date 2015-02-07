@@ -2,7 +2,8 @@
 
 Class NumberField extends Field{//текстовое поле для обработки номеров телефонов
 
-    function customValidate($testValue){
+    function customValidate(){
+        $testValue = $this->value();
         $error_module = new Errors();
         if(preg_match_all('/([^\d])/',$testValue)){
             return $error_module->incorrectFillError();
