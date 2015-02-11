@@ -2,6 +2,7 @@
 class InkTheme {
     private $views = array(
         'TextField' => 'viewInkTextField',
+        'Button' => 'viewInkButton',
         'Page' => 'viewInkPage',
     );
     

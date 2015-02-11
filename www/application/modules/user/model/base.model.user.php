@@ -12,8 +12,9 @@
  * */
 class BaseUserModel
 {
+    /* Инструментарий для работы с БД */
 
-    static private $_instance = null;
+    private static $_connection = null;
 
     protected $id = null;
     protected $name = null;
@@ -31,10 +32,22 @@ class BaseUserModel
     protected $password = null;
     protected $email = null;
 
-    public function __construct()
-    {
-
-    }
+    private $personalInfo = array(
+        'login_phone' => 'setLogin',
+        'password' => 'setPassword',
+        'email' => 'setEmail',
+        'name' => 'setName',
+        'surname' => 'setSurname',
+        'patronymic' => 'setPatronymic',
+        'birthday' => 'setBirthday',
+        'gender' => 'setGender',
+        '$passport_series' => 'setPassportSeries',
+        '$passport_number' => 'setPassportNumber',
+        '$passport_department' => 'setPassportDepartment',
+        '$passport_address' => 'setPassportAddress',
+        '$passport_get_date' => 'setPassportGetDate',
+        '$phone_contact' => 'setPhoneContact'
+    );
     /**
      * Получение и установка свойств объекта через вызов
      * магического метода вида: $object->(get|set)PropertyName($property);
@@ -45,12 +58,8 @@ class BaseUserModel
      * @see __call
      * @return mixed
      * */
-    // $this->setName($x);
-    // $this->setFuck("cool");
-    // $this->getFuck();
-    // $this->name = $x;
     /*убрать метод call, поставить __set и __get*/
-    public function __call($methodName, $arguments)
+    /*    public function __call($methodName, $arguments)
     {
         $args = preg_split('/(?<=\w)(?=[A-Z])/', $methodName);
         $action = array_shift($args);
@@ -64,13 +73,46 @@ class BaseUserModel
 
         }
     }
+*/
+    public function __get($property)
+    {
+        if (property_exists($this, $property)) {
+            return $this->$property;
+        }
+    }
 
-    /**
-     * Возвращет единственный экземпляр данного класса.
-     * @return object - объект класса BaseUserController.
-     */
+    public function  __set($property, $value)
+    {
+        if (property_exists($this, $property)) {
+            $this->$property = $value;
+        }
+    }
 
-    public function setUser($id){
+    private function installConnection()
+    {//установка соединения с базой данных(через уже существующий класс работы с базой данных)
+        self::$_connection = Connection::getInstance();
+        return self::$_connection->getConnection();
+    }
+
+    /* Установка свойств класса*/
+    private function initData()
+    {
+        $connect = $this->installConnection();
+        //Выбрать все, кроме id и status.
+        $sql = "SELECT * FROM `subscriber` WHERE id = {'$this->id'}";
+        $result = $connect->query($sql);
+        foreach ($dataDB = $result->fetch_assoc() as $key => $value) {
+            /*Изменить название столбцов в БД*/
+            if (isset($this->personalInfo[$key])) {
+                $filed = $this->personalInfo[$key];
+                $this->$filed($value);
+            }
+        }
+    }
+
+
+    public function setUser($id)
+    {
 
     }
 
@@ -170,8 +212,9 @@ class BaseUserModel
         }
     }
 
-    public function setPassportDepartment($passport_department){
-        if(is_string($passport_department) && is_null($passport_department)){
+    public function setPassportDepartment($passport_department)
+    {
+        if (is_string($passport_department) && is_null($passport_department)) {
             throw new Exception ('Passport department is null');
         }
     }
@@ -259,9 +302,4 @@ class BaseUserModel
         }
     }
 
-    /*
-     * */
-    public function saveChanges(){
-
-    }
 }
