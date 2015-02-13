@@ -1,6 +1,6 @@
 <?php
 
-Class DateField extends Field{
+Class DateField extends Field{//поле даты
 
     private $max_date = null;//верхняя граница даты(текущая дата)
     private$min_date = null;//нижняя граница даты
@@ -9,7 +9,7 @@ Class DateField extends Field{
         $this->label($new_label);//инициализация поля
         $this->name($new_name);
         $this->required($new_req_marker);
-        $this->value($new_value);
+        $this->rawValue($new_value);
         $this->min_date = $new_min_date;//инициализация временных границ
         $this->max_date = $new_max_date;
     }

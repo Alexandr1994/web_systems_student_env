@@ -11,7 +11,7 @@ abstract Class Field implements iField{
         $this->label($new_label);//инициализация поля
         $this->name($new_name);
         $this->required($new_req_marker);
-        $this->value($new_value);
+        $this->rawValue($new_value);
     }
 
     public function label($new_value=null){//работа с надписью у поля

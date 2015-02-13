@@ -1,5 +1,5 @@
 <?php
-Class LoginField extends Field{//текстовое поле для ФИО
+Class LoginField extends Field{//текстовое поле для логина
 
 
     function customValidate(){

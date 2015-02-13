@@ -22,11 +22,13 @@ $page_class = TemplateManager::GetView('Page');
 $page = new $page_class($content);
 echo $page->render();
 
+var_dump($_SERVER['REQUEST_METHOD']);
+var_dump($_SERVER['REQUEST_URI']);
 test();
 
 function test(){
-    $f1 = new PasswordRegField("Введите пароль","password", true);
-    //$f2 = new TextField("Логин","bla-bla",true);
-    echo $f1->render();
+
+    $f1 = new AuthorizationForm();
+    $f1->renderForm();
     //echo $f2->render();
 }

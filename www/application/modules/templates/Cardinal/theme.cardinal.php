@@ -6,6 +6,7 @@ class CardinalTheme {
         'ButtonField' => 'viewCardinalButton',
         'PasswordRegField' => 'viewCardinalPasswordRegField',
         'PasswordAuthorField' => 'viewCardinalPasswordAuthorField',
+        'HiddenField' => 'viewCardinalHiddenField',
         'Page'=> 'viewCardinalPage',
     );
     

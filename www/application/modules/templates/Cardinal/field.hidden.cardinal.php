@@ -1,5 +1,5 @@
 <?php
-class viewCardinalPasswordAuthorField extends BaseTemplate{
+class viewCardinalHiddenField extends BaseTemplate{
 
     /*
      * @param filed - object*/
@@ -14,10 +14,9 @@ class viewCardinalPasswordAuthorField extends BaseTemplate{
     /*Переделать на шаблон вызывающий smarty*/
 
     public function render(){
-        $this->smarty->assign('label',$this->field->label());
         $this->smarty->assign('name',$this->field->name());
-        $this->smarty->assign('value', $this->field->value());
+        $this->smarty->assign('value',$this->field->value());
         $this->smarty->assign('required',$this->field->required());
-        return $this->smarty->fetch('passwordAuthorField.tpl');
+        return $this->smarty->fetch('hiddenField.tpl');
     }
 }
