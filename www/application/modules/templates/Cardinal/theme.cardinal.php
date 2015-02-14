@@ -7,7 +7,8 @@ class CardinalTheme {
         'PasswordRegField' => 'viewCardinalPasswordRegField',
         'PasswordAuthorField' => 'viewCardinalPasswordAuthorField',
         'HiddenField' => 'viewCardinalHiddenField',
-        'Page'=> 'viewCardinalPage',
+        'Page' => 'viewCardinalPage',
+        'Form' => 'ViewCarinalForm'
     );
     
     function GetView($view_name) {

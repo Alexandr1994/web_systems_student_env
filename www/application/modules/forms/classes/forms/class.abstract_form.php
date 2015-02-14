@@ -3,6 +3,30 @@
 abstract Class Form{
 
     private $fields = array();//поля формы
+    private $my_method = null;//метод формы
+    private $my_action = null;//действие формы
+    private $my_label = null;//заголовок формы
+
+    public function method($new_method = null){//установить и веруть метод формы
+        if(!is_null($new_method)){
+            $this->my_method = $new_method;
+        }
+        return $this->my_method;
+    }
+
+    public function action($new_action = null){//установить и вернуть действие формы
+        if(!is_null($new_action)){
+            $this->my_action = $new_action;
+        }
+        return $this->my_action;
+    }
+
+    public function label($new_label = null){//установить и вернуть заголовок формы
+        if(!is_null($new_label)){
+            $this->my_label = $new_label;
+        }
+        return $this->my_label;
+    }
 
     abstract protected function createForm();//построение текстового представления формы
 

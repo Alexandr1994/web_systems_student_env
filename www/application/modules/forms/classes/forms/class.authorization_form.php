@@ -8,13 +8,16 @@ Class AuthorizationForm extends Form{
     }
 
     protected function createForm(){//построение формы
+        $this->method("POST");//инициализация атрибутов формы
+        $this->action("/login");
+        $this->label("Авторизация");
         $fields = $this->getFormFields();//получить массив полей формы
         $index_login = "login";//инициализировать поля формы
         $fields[$index_login] = new LoginField("Ваш логин",$index_login,true);//инициализация класса поля логина
         $index_password = "password";
         $fields[$index_password] = new PasswordAuthField("Пароль",$index_password, true);//инициализация класса поля пароля
         $index_button = "submit";
-        $fields[$index_button] = new ButtonField("Нажмите, чтобы авторизоваться",$index_button, true, "POST", "/login", "Войти");//инициализация класса поля кнопки
+        $fields[$index_button] = new ButtonField("Нажмите, чтобы авторизоваться",$index_button, true, "Войти");//инициализация класса поля кнопки
         $index_tester = "tester";
         $fields[$index_tester] = new HiddenField($index_tester, false, md5(get_called_class()));
         $this->setFormFields($fields);
@@ -40,10 +43,9 @@ Class AuthorizationForm extends Form{
         //добавить обработку ошибок, ждем шаблонизатор
         //цикл рендера каждого из полей формы на уровне шаблонизатора
         //добавить новую форму submit
-        $fields = $this->getFormFields();
-        foreach($fields as $value){
-           echo $value->render();
-        }
+        $view = TemplateManager::GetView('Form');//добавить шаблон поля пароля авторизации
+        $filed_render = new $view($this);
+        echo $filed_render->render();
     }
 
     public function process(){//действие при нажатии на submit

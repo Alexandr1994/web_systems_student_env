@@ -17,8 +17,6 @@ class viewCardinalButton extends BaseTemplate{
         $this->smarty->assign('label',$this->field->label());
         $this->smarty->assign('name',$this->field->name());
         $this->smarty->assign('value',$this->field->value());
-        $this->smarty->assign('formmethod',$this->field->formmethod());
-        $this->smarty->assign('formaction',$this->field->formaction());
         $this->smarty->assign('required',$this->field->required());
         return $this->smarty->fetch('button.tpl');
     }

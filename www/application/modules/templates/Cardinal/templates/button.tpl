@@ -1,4 +1,5 @@
 <label><br>{$label}<br>
-    <input type='button' name='{$name}' value='{$value}' formaction="$formaction" formmethod="$method">
+    <input type='submit' name='{$name}' value='{$value}'>
     {if $required eq 'true'}*{/if}
 </label>
+
