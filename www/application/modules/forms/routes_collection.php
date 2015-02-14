@@ -1,7 +1,6 @@
 <?php
 
-    $ar1 = array('AuthorizationForm','renderForm');
-    $ar2 = array('AuthorizationForm','process');
+    $ar1 = array('AuthorizationForm','process');
 
     $pattern_params_collection = array("author"=>"login");
 

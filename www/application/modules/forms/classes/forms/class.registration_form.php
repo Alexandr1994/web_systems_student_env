@@ -7,7 +7,7 @@ Class RegistrationForm extends Form{
 
     }
 
-    protected function submitForm(){
+    protected function customSubmitForm(){//"провивка" логина и пароля по БД и redirect в случае совпадения
 
     }
 
@@ -15,9 +15,7 @@ Class RegistrationForm extends Form{
 
     }
 
-    public function process(){
 
-    }
 
     public function renderForm(){
 
