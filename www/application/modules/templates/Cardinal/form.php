@@ -19,12 +19,12 @@ Class ViewCarinalForm extends BaseTemplate{
         return $text;
     }
 
-    public function render(){
+      public function render($errors = null){
         $this->smarty->assign('method',$this->form->method());
         $this->smarty->assign('action',$this->form->action());
         $this->smarty->assign('label', $this->form->label());
         $this->smarty->assign('fields', $this->formFields());
-        $this->smarty->assign('errors', $this->form->getErrors());
+        $this->smarty->assign('errors', $errors);
         return $this->smarty->fetch("Form.tpl");
     }
 

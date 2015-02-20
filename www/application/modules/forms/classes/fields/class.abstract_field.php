@@ -45,15 +45,12 @@ abstract Class Field implements iField{
     }
 
     public function rawValue($new_value=null){//работа с необработанным значением поля
-        if(!is_null($new_value)){
-            $this->raw_value = $new_value;//переписать raw_value если пришел аргумент
-        }
-        return $this->raw_value;//вернуть raw_value
+        $this->raw_value = $new_value;//переписать raw_value
     }
 
     public function validate(){//проверка поля на правильность(формирование массива ошибок)
         if($this->require){
-            if(is_null($this->rawValue())){//если обязательное поле пустое, то впихнуть соответствубщую ошибку в массив ошибок
+            if(is_null($this->raw_value) || $this->raw_value == ''){//если обязательное поле пустое, то впихнуть соответствубщую ошибку в массив ошибок
                 $error_collection = new Errors();
                 array_push($this->errors, $error_collection->emptyError());
                 return;

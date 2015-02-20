@@ -25,7 +25,7 @@ echo $page->render();
 var_dump($_SERVER['REQUEST_METHOD']);
 var_dump($_SERVER['REQUEST_URI']);
 
-test();
+//test();
 
 function test(){
     $f1 = new AuthorizationForm();

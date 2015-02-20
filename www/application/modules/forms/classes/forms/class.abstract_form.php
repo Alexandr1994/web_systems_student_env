@@ -3,15 +3,15 @@
 abstract Class Form{
 
     private $errors = array();//ошибки формы
-    private $fields = array();//поля формы
+    protected $fields = array();//поля формы
     private $my_method = null;//метод формы
     private $my_action = null;//действие формы
     private $my_label = null;//заголовок формы
 
     function __construct(){
         $index_tester = "test";//задать скрытое поле
-        $fields[$index_tester] = new HiddenField($index_tester, false, md5(get_called_class()));
-        $this->fields = $this->createForm();//построить форму
+        $this->fields[$index_tester] = new HiddenField($index_tester, false, md5(get_called_class()));
+        $this->createForm();//построить форму
     }
 
     public function method($new_method = null){//установить и веруть метод формы
@@ -59,6 +59,7 @@ abstract Class Form{
     }
 
     protected function renderForm($errors = null){//отображение формы
+        $this->__construct();//Восстановить форму
         $view = TemplateManager::GetView('Form');//добавить шаблон поля пароля авторизации
         $filed_render = new $view($this);
         return $filed_render->render($errors);
@@ -66,16 +67,25 @@ abstract Class Form{
 
     public function process(){//действие при нажатии на submit
         $this->getDataFromForm();//считать данные с формы
-        if($this->fields["test"] -> value() !== md5(get_called_class())){
+        if($this->fields["test"]->value() != md5(get_called_class())){
             echo $this->renderForm();
             return;
         }
         $this->validateForm();//проверить данные формы и вернуть ошибки возникшие ошибки
-        if(count($this->errors) != 0){
-            echo $this->renderForm();//если возникли проблемы вывести форму с сообщением об ошибках
+        if(!$this->errorTest()){
+            echo $this->renderForm($this->errors);//если возникли проблемы вывести форму с сообщением об ошибках
             return;
         }
         $this->submitForm();
+    }
+
+    private function errorTest(){//проверка на колличество ошибок в каждом поле
+        foreach($this->errors as $errors){
+            if(count($errors) != 0){
+                return false;//если хотя бы в одном поле зафиксированна ошибка вернуть false
+            }
+        }
+        return true;//если все в порядке вернуть true
     }
 
     protected function getDataFromForm(){//считывание данных из формы
