@@ -4,7 +4,7 @@ abstract Class Field implements iField{
     private $label = null;//маркер обязательности
     private $name = null;//имя поля
     private $require = false;//маркер обязательности
-    private $raw_value = null;//необработанные данные формы
+    protected $raw_value = null;//необработанные данные формы
     private $errors = array();//ошибки данного поля
 
     public function __construct($new_label,$new_name, $new_req_marker,$new_value = null){
@@ -45,7 +45,9 @@ abstract Class Field implements iField{
     }
 
     public function rawValue($new_value=null){//работа с необработанным значением поля
-        $this->raw_value = $new_value;//переписать raw_value
+        if(!is_null($new_value)){
+            $this->raw_value = $new_value;//переписать raw_value
+        }
     }
 
     public function validate(){//проверка поля на правильность(формирование массива ошибок)

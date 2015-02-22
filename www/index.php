@@ -25,10 +25,3 @@ echo $page->render();
 var_dump($_SERVER['REQUEST_METHOD']);
 var_dump($_SERVER['REQUEST_URI']);
 
-//test();
-
-function test(){
-    $f1 = new AuthorizationForm();
-    $f1->process();
-    //echo $f2->render();
-}

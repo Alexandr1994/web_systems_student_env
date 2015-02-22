@@ -28,7 +28,7 @@ Class PassportField extends Field
     }
 
     public function render(){//вернуть строковое представление текстового поля
-        $view = TemplateManager::GetView('TextField');//добавить паспортную форму
+        $view = TemplateManager::GetView('PasportField');//добавить паспортную форму
         $filed_render = new $view($this);
         return $filed_render->render();
     }

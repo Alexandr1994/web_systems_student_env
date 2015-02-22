@@ -59,7 +59,6 @@ abstract Class Form{
     }
 
     protected function renderForm($errors = null){//отображение формы
-        $this->__construct();//Восстановить форму
         $view = TemplateManager::GetView('Form');//добавить шаблон поля пароля авторизации
         $filed_render = new $view($this);
         return $filed_render->render($errors);
@@ -67,7 +66,7 @@ abstract Class Form{
 
     public function process(){//действие при нажатии на submit
         $this->getDataFromForm();//считать данные с формы
-        if($this->fields["test"]->value() != md5(get_called_class())){
+        if($_POST["test"]!= md5(get_called_class())){
             echo $this->renderForm();
             return;
         }

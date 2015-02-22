@@ -1,5 +1,5 @@
 <?php
-class viewCardinalPasswordAuthorField extends BaseTemplate{
+class viewCardinalPasport extends BaseTemplate{
 
     /*
      * @param filed - object*/
@@ -24,6 +24,6 @@ class viewCardinalPasswordAuthorField extends BaseTemplate{
         $this->smarty->assign('name',$this->field->name());
         $this->smarty->assign('value', $this->field->value());
         $this->smarty->assign('required',$this->field->required());
-        return $this->smarty->fetch('passwordAuthorField.tpl');
+        return $this->smarty->fetch('pasportField.tpl');
     }
 }
