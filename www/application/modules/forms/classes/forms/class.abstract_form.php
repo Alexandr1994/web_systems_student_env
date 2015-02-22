@@ -10,7 +10,7 @@ abstract Class Form{
 
     function __construct(){
         $index_tester = "test";//задать скрытое поле
-        $this->fields[$index_tester] = new HiddenField($index_tester, false, md5(get_called_class()));
+        $this->fields[$index_tester] = new HiddenField(md5(get_called_class()), $index_tester, false, md5(get_called_class()));
         $this->createForm();//построить форму
     }
 
@@ -58,21 +58,21 @@ abstract Class Form{
         array_merge($this->errors, $this->validateCustomForm());
     }
 
-    protected function renderForm($errors = null){//отображение формы
+    protected function renderForm(){//отображение формы
         $view = TemplateManager::GetView('Form');//добавить шаблон поля пароля авторизации
         $filed_render = new $view($this);
-        return $filed_render->render($errors);
+        return $filed_render->render();
     }
 
     public function process(){//действие при нажатии на submit
         $this->getDataFromForm();//считать данные с формы
-        if($_POST["test"]!= md5(get_called_class())){
+        if($this->fields["test"] -> getRawValue() !== md5(get_called_class())){
             echo $this->renderForm();
             return;
         }
         $this->validateForm();//проверить данные формы и вернуть ошибки возникшие ошибки
         if(!$this->errorTest()){
-            echo $this->renderForm($this->errors);//если возникли проблемы вывести форму с сообщением об ошибках
+            echo $this->renderForm();//если возникли проблемы вывести форму с сообщением об ошибках
             return;
         }
         $this->submitForm();
@@ -90,7 +90,9 @@ abstract Class Form{
     protected function getDataFromForm(){//считывание данных из формы
         $data = $_POST;
         foreach($this->fields as $index => $field){//перебор POST по массиву полей формы
-            $field->rawValue($data[$index]);
+            if(isset($_POST[$index])){
+                $field->rawValue($data[$index]);
+             }
         }
     }
 

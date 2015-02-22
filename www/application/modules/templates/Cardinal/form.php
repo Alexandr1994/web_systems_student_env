@@ -24,7 +24,7 @@ Class ViewCarinalForm extends BaseTemplate{
         $this->smarty->assign('action',$this->form->action());
         $this->smarty->assign('label', $this->form->label());
         $this->smarty->assign('fields', $this->formFields());
-        $this->smarty->assign('errors', $this->$errors);
+        $this->smarty->assign('errors', $this->form->getErrors());
         return $this->smarty->fetch("Form.tpl");
     }
 

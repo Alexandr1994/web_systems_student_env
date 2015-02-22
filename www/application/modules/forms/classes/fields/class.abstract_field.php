@@ -4,14 +4,15 @@ abstract Class Field implements iField{
     private $label = null;//маркер обязательности
     private $name = null;//имя поля
     private $require = false;//маркер обязательности
-    protected $raw_value = null;//необработанные данные формы
+    private $raw_value = null;//необработанные данные формы
+    private $default_value = null;//значение по-умолчанию
     private $errors = array();//ошибки данного поля
 
     public function __construct($new_label,$new_name, $new_req_marker,$new_value = null){
         $this->label($new_label);//инициализация поля
         $this->name($new_name);
         $this->required($new_req_marker);
-        $this->rawValue($new_value);
+        $this->default_value = $new_value;
     }
 
     public function label($new_value=null){//работа с надписью у поля
@@ -37,17 +38,24 @@ abstract Class Field implements iField{
     }
 
     protected function unify(){//преобразование значения rawValue в требуемый формат
-        return trim($this->raw_value);
+        if(isset($this->raw_value)){
+            return trim($this->raw_value);
+        }
+        else{
+            return trim($this->default_value);
+        }
     }
 
     public function value(){//работа со значением поля
         return $this->unify();//вернуть value
     }
 
-    public function rawValue($new_value=null){//работа с необработанным значением поля
-        if(!is_null($new_value)){
-            $this->raw_value = $new_value;//переписать raw_value
-        }
+    public function rawValue($new_value){//переписать raw_value
+        $this->raw_value = $new_value;
+    }
+
+    public function getRawValue(){//получить raw_value
+        return $this->raw_value;
     }
 
     public function validate(){//проверка поля на правильность(формирование массива ошибок)
