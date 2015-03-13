@@ -1,0 +1,27 @@
+Class Diagram for Views + Themes
+Template Engine - Smarty
+Themes - 2
+    ink http://ink.sapo.pt/
+	Cardinal http://cardinalcss.com/
+
+Header \ Footer \ Content = Layout
+
+Controller has method that "connected" with View
+
+INK:
+
+<div class="control-group validation error">
+    <label for="error-field">Text input</label> 
+        <div class="control">
+            <input name="field" id="error-field" type="text" placeholder="Please input some text">
+        </div>
+    <p class="tip">Your field has errors</p>
+</div>
+
+CARDINAL:
+
+<p>
+  <label>Text input<br>
+    <input type="text" placeholder="Text input">
+  </label>
+</p>
